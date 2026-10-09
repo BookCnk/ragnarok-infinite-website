@@ -1,0 +1,442 @@
+@reference "../app/globals.css";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 16px clamp(12px, 3vw, 40px) 0;
+  pointer-events: none;
+  transition: padding 200ms ease, filter 200ms ease;
+}
+
+.headerScrolled {
+  padding-top: 10px;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55));
+}
+
+.navBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  pointer-events: auto;
+}
+
+/* =========================================
+   Left Main Menu Frame (Fantasy RPG Ornamented)
+   ========================================= */
+.mainFrame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 3px 8px;
+  background: var(--nav-surface);
+  border: 1px solid var(--nav-edge-soft);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  clip-path: polygon(
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px),
+    0 10px
+  );
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px var(--nav-edge-soft);
+}
+
+/* Top Center Golden Diamond Point */
+.topOrnament {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--nav-edge);
+  border: 1px solid var(--nav-gold-start);
+  transform: translateX(-50%) rotate(45deg);
+  box-shadow: 0 0 6px var(--nav-edge);
+  pointer-events: none;
+}
+
+.menuList {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 2px;
+}
+
+.menuLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 clamp(8px, 1.1vw, 16px);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--nav-text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 150ms ease, text-shadow 150ms ease;
+  user-select: none;
+}
+
+.menuLink:hover {
+  color: var(--nav-action);
+  text-shadow: 0 0 8px var(--nav-edge);
+}
+
+.menuText {
+  letter-spacing: 0.02em;
+}
+
+.dropdownIcon {
+  width: 13px;
+  height: 13px;
+  margin-left: 3px;
+  opacity: 0.75;
+  transition: transform 150ms ease;
+}
+
+.menuLink:hover .dropdownIcon {
+  transform: translateY(1px);
+  opacity: 1;
+}
+
+/* =========================================
+   Active Link: Glowing Cyan/Blue "หน้าแรก"
+   ========================================= */
+.activeLink {
+  gap: 6px;
+  padding: 0 18px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--nav-active-from) 0%, var(--nav-active-to) 100%);
+  border: 1px solid var(--nav-active-line);
+  color: var(--nav-text);
+  box-shadow:
+    0 0 16px rgba(56, 189, 248, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.activeLink:hover {
+  color: var(--nav-text);
+  text-shadow: none;
+}
+
+.homeIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--nav-text);
+  flex-shrink: 0;
+}
+
+/* Neon bottom bar flare */
+.activeGlowFlare {
+  position: absolute;
+  bottom: -1px;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: var(--nav-glow);
+  box-shadow:
+    0 0 8px 1px var(--nav-glow),
+    0 0 16px 2px var(--nav-glow);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+/* =========================================
+   Right Group: Social Media Capsule + Gold CTA
+   ========================================= */
+.rightGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Social Media Capsule */
+.socialCapsule {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 10px;
+  gap: 6px;
+  background: var(--nav-surface);
+  border: 1px solid var(--nav-edge-soft);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px),
+    0 8px
+  );
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px var(--nav-edge-soft);
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 9999px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 150ms ease, filter 150ms ease;
+  flex-shrink: 0;
+}
+
+.socialBtn:hover {
+  transform: scale(1.12);
+  filter: brightness(1.2);
+}
+
+.socialSvg {
+  width: 14px;
+  height: 14px;
+}
+
+.discordBtn {
+  background: var(--nav-social-discord);
+}
+
+.facebookBtn {
+  background: var(--nav-social-facebook);
+}
+
+.youtubeBtn {
+  background: var(--nav-social-youtube);
+  border-radius: 6px;
+  width: 27px;
+  height: 20px;
+}
+
+.lineBtn {
+  background: var(--nav-social-line);
+}
+
+/* =========================================
+   Gold Download CTA Button (Faceted / Beveled)
+   ========================================= */
+.goldDownloadBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 48px;
+  padding: 0 clamp(14px, 1.4vw, 22px);
+  background: linear-gradient(
+    180deg,
+    var(--nav-gold-start) 0%,
+    var(--nav-gold-mid) 48%,
+    var(--nav-gold-end) 100%
+  );
+  color: var(--nav-action-foreground);
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px),
+    0 8px
+  );
+  box-shadow:
+    0 0 16px rgba(229, 167, 59, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--nav-gold-start);
+  transition: transform 150ms ease, filter 150ms ease, box-shadow 150ms ease;
+  user-select: none;
+}
+
+.goldDownloadBtn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 24px rgba(255, 228, 148, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.goldDownloadBtn:active {
+  transform: translateY(1px);
+}
+
+.downloadIcon {
+  width: 17px;
+  height: 17px;
+  stroke-width: 2.5;
+  color: var(--nav-action-foreground);
+  flex-shrink: 0;
+}
+
+.goldDownloadText {
+  letter-spacing: 0.01em;
+}
+
+/* =========================================
+   Mobile Hamburger Toggle
+   ========================================= */
+.mobileToggleBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 48px;
+  background: var(--nav-surface);
+  border: 1px solid var(--nav-edge-soft);
+  color: var(--nav-text);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.mobileToggleBtn:hover {
+  background: var(--nav-surface-solid);
+}
+
+.toggleIcon {
+  width: 22px;
+  height: 22px;
+}
+
+/* =========================================
+   Mobile Drawer Overlay
+   ========================================= */
+.mobileDrawer {
+  position: absolute;
+  top: 100%;
+  left: clamp(12px, 3vw, 40px);
+  right: clamp(12px, 3vw, 40px);
+  margin-top: 8px;
+  padding: 16px;
+  background: var(--nav-surface-solid);
+  border: 1px solid var(--nav-edge-soft);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  pointer-events: auto;
+  z-index: 50;
+}
+
+.mobileMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobileMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--nav-text);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.mobileMenuItem:hover {
+  background: var(--nav-surface);
+  color: var(--nav-action);
+}
+
+.mobileActiveItem {
+  background: linear-gradient(90deg, var(--nav-active-from) 0%, var(--nav-active-to) 100%);
+  color: var(--nav-text);
+}
+
+.mobileHomeIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.mobileDrawerFooter {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--nav-edge-soft);
+}
+
+.mobileDownloadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 44px;
+  background: linear-gradient(
+    180deg,
+    var(--nav-gold-start) 0%,
+    var(--nav-gold-mid) 48%,
+    var(--nav-gold-end) 100%
+  );
+  color: var(--nav-action-foreground);
+  font-weight: 800;
+  font-size: 15px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* =========================================
+   Responsive Breakpoints
+   ========================================= */
+@media (max-width: 1180px) {
+  .menuList {
+    gap: 0;
+  }
+  .menuLink {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .activeLink {
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 980px) {
+  .mainFrame {
+    display: none;
+  }
+  .mobileToggleBtn {
+    display: flex;
+  }
+}
+
+@media (max-width: 540px) {
+  .socialCapsule {
+    display: none;
+  }
+  .goldDownloadBtn {
+    height: 44px;
+    font-size: 13px;
+    padding: 0 14px;
+  }
+}
