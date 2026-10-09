@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Download, Monitor, Sparkle } from "lucide-react";
+import { Monitor, Sparkle } from "lucide-react";
 import styles from "./game-hero.module.css";
 
 const embers = Array.from({ length: 18 });
@@ -41,19 +41,48 @@ export function GameHero() {
         </h1>
         <p className={styles.description}>ออกผจญภัยในโลกกว้าง ไปด้วยกันอีกครั้ง</p>
 
+        {/* Glossy Graphic Action Buttons */}
         <div className={styles.actions}>
-          <Link href="#download" className={`${styles.button} ${styles.download}`}>
-            <Download aria-hidden="true" size={28} strokeWidth={2.5} />
-            <span>
-              <span className={styles.buttonLabel}>ดาวน์โหลดเกม</span>
-              <span className={styles.buttonCaption}>PLAY NOW</span>
-            </span>
+          <Link
+            href="/download"
+            className={`${styles.graphicActionBtn} ${styles.downloadAction}`}
+            aria-label="ดาวน์โหลดเกม Ragnarok Infinite"
+          >
+            <div className={styles.graphicActionInner}>
+              <Image
+                src="/images/ui/image.png"
+                alt="ดาวน์โหลดเกม"
+                width={2172}
+                height={724}
+                priority
+                className={styles.graphicActionImg}
+              />
+              {/* Glossy Reflections & Shimmer Light Sweeps */}
+              <span aria-hidden="true" className={styles.glossGlassReflection} />
+              <span aria-hidden="true" className={styles.glossShine} />
+              <span aria-hidden="true" className={styles.glossSparkle} />
+            </div>
           </Link>
-          <Link href="/login" className={`${styles.button} ${styles.register}`}>
-            <span>
-              <span className={styles.buttonLabel}>สมัครสมาชิก</span>
-              <span className={styles.buttonCaption}>CREATE ACCOUNT</span>
-            </span>
+
+          <Link
+            href="/login"
+            className={`${styles.graphicActionBtn} ${styles.loginAction}`}
+            aria-label="เข้าสู่ระบบ Ragnarok Infinite"
+          >
+            <div className={styles.graphicActionInner}>
+              <Image
+                src="/images/ui/login-btn.png"
+                alt="เข้าสู่ระบบ"
+                width={2172}
+                height={724}
+                priority
+                className={styles.graphicActionImg}
+              />
+              {/* Glossy Reflections & Shimmer Light Sweeps */}
+              <span aria-hidden="true" className={styles.glossGlassReflection} />
+              <span aria-hidden="true" className={`${styles.glossShine} ${styles.glossShineOffset}`} />
+              <span aria-hidden="true" className={`${styles.glossSparkle} ${styles.glossSparkleOffset}`} />
+            </div>
           </Link>
         </div>
 

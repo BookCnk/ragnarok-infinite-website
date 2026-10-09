@@ -11,7 +11,6 @@ import {
   BookOpen,
   Swords,
   Gamepad2,
-  Download,
   Menu,
   X,
   ChevronRight,
@@ -30,7 +29,6 @@ const menuItems: NavMenuItem[] = [
   { label: "แนะนำเกม", href: "/#guide", icon: BookOpen },
   { label: "อาชีพ", href: "/#classes", icon: Swords },
   { label: "ระบบเกม", href: "/#systems", icon: Gamepad2 },
-  { label: "ดาวน์โหลด", href: "/download", icon: Download },
 ];
 
 export function GameNavbar() {
@@ -194,11 +192,20 @@ export function GameNavbar() {
             </a>
           </div>
 
-          {/* Golden Download CTA Button */}
-          <Link href="/download" className={styles.goldDownloadBtn}>
-            <span aria-hidden="true" className={styles.btnShimmer} />
-            <Download aria-hidden="true" className={styles.downloadIcon} strokeWidth={2.4} />
-            <span className={styles.goldDownloadText}>ดาวน์โหลดเกม</span>
+          {/* Graphic Fantasy Download CTA Button */}
+          <Link
+            href="/download"
+            className={styles.graphicDownloadBtn}
+            aria-label="ดาวน์โหลดเกม Ragnarok Infinite"
+          >
+            <Image
+              src="/images/ui/image.png"
+              alt="ดาวน์โหลดเกม"
+              width={2172}
+              height={724}
+              priority
+              className={styles.graphicDownloadImg}
+            />
           </Link>
 
           {/* Mobile Menu Hamburger Button */}
@@ -285,11 +292,16 @@ export function GameNavbar() {
               <Link
                 href="/download"
                 onClick={() => setMobileMenuOpen(false)}
-                className={styles.mobileDownloadBtn}
+                className={styles.mobileGraphicDownloadBtn}
+                aria-label="ดาวน์โหลดเกม Ragnarok Infinite"
               >
-                <span aria-hidden="true" className={styles.btnShimmer} />
-                <Download aria-hidden="true" className={styles.downloadIcon} strokeWidth={2.4} />
-                <span>ดาวน์โหลดเกม PC</span>
+                <Image
+                  src="/images/ui/image.png"
+                  alt="ดาวน์โหลดเกม"
+                  width={2172}
+                  height={724}
+                  className={styles.mobileGraphicDownloadImg}
+                />
               </Link>
 
               {/* Mobile Social Links Row */}

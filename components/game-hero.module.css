@@ -143,94 +143,167 @@
 .actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  width: min(100%, 720px);
-  margin-top: 26px;
+  gap: 20px;
+  width: min(100%, 760px);
+  margin-top: 28px;
   animation: hero-enter 800ms 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.button {
+/* =========================================
+   Glossy Fantasy Graphic Action Buttons
+   ========================================= */
+.graphicActionBtn {
   position: relative;
-  display: flex;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  outline: none;
+  user-select: none;
+  transition:
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 220ms ease;
+}
+
+.graphicActionInner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2172 / 724;
   overflow: hidden;
-  min-height: 82px;
+  border-radius: 16px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  padding: 12px 24px;
-  border: 1px solid var(--hero-gold);
-  border-radius: 8px 22px;
-  outline-offset: 6px;
-  text-decoration: none;
-  box-shadow: inset 0 0 0 3px var(--hero-surface), inset 0 0 0 4px var(--hero-gold);
-  transition: transform 180ms ease, filter 180ms ease;
 }
 
-.button::after {
-  position: absolute;
-  inset: 7px;
-  border: 1px solid currentColor;
-  border-radius: 3px 15px;
-  opacity: 0.25;
+.graphicActionImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   pointer-events: none;
-  content: "";
+  user-select: none;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.button::before {
+/* Glossy Curved Glass Reflection (มันวาว) */
+.glossGlassReflection {
   position: absolute;
-  z-index: 0;
-  top: 5px;
-  bottom: 5px;
-  left: -45%;
-  width: 34%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--hero-button-gloss) 56%, transparent), transparent);
-  content: "";
-  opacity: 0.75;
+  top: 4%;
+  left: 5%;
+  right: 5%;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.58) 0%,
+    rgba(255, 255, 255, 0.22) 42%,
+    rgba(255, 255, 255, 0.02) 80%,
+    transparent 100%
+  );
+  border-radius: 9999px 9999px 40% 40%;
   pointer-events: none;
-  transform: skewX(-22deg);
-  animation: button-shine 3.6s ease-in-out infinite;
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  transition: opacity 200ms ease;
 }
 
-.button > * { position: relative; z-index: 1; }
-
-.button:hover {
-  filter: brightness(1.1);
-  transform: translateY(-2px);
+/* Diagonal Moving Light Shine Beam (แสงประกายกวาดผ่าน) */
+.glossShine {
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: -130%;
+  width: 65%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 25%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  animation: glossy-sweep 3.8s ease-in-out infinite;
 }
 
-.button:focus-visible {
-  outline: 3px solid var(--hero-foreground);
+.glossShineOffset {
+  animation-delay: 0.85s;
 }
 
-.download {
-  color: var(--hero-on-gold);
-  background: linear-gradient(115deg, var(--hero-gold), var(--hero-gold-light) 45%, var(--hero-gold));
-  box-shadow: inset 0 0 0 2px var(--hero-gold-light), inset 0 0 0 4px var(--hero-gold);
-  animation: button-glow 2.8s ease-in-out infinite;
+/* Specular Star Sparkle / Glint (ประกายวิ้ง) */
+.glossSparkle {
+  position: absolute;
+  top: 8%;
+  right: 18%;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 228, 148, 0.85) 40%,
+    transparent 70%
+  );
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.95));
+  animation: sparkle-flash 3.8s ease-in-out infinite;
 }
 
-.register {
-  color: var(--hero-foreground);
-  background: linear-gradient(135deg, var(--hero-surface), var(--hero-button));
-  animation: button-glow 3.3s ease-in-out infinite 0.35s;
+.glossSparkleOffset {
+  top: 8%;
+  right: 20%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(112, 189, 255, 0.85) 40%,
+    transparent 70%
+  );
+  animation-delay: 0.85s;
 }
 
-.buttonLabel {
-  display: block;
-  font-size: clamp(18px, 2.2vw, 27px);
-  font-weight: 700;
-  line-height: 1.35;
+/* Download Button Specific Glow */
+.downloadAction {
+  filter:
+    drop-shadow(0 8px 22px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 16px rgba(229, 167, 59, 0.45));
 }
 
-.buttonCaption {
-  display: block;
-  margin-top: 2px;
-  font-family: Georgia, serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  opacity: 0.8;
+.downloadAction:hover {
+  transform: translateY(-4px) scale(1.03);
+  filter:
+    drop-shadow(0 14px 32px rgba(0, 0, 0, 0.85))
+    drop-shadow(0 0 28px rgba(255, 228, 148, 0.85))
+    brightness(1.12);
+}
+
+.downloadAction:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Login Button Specific Glow */
+.loginAction {
+  filter:
+    drop-shadow(0 8px 22px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 16px rgba(56, 189, 248, 0.45));
+}
+
+.loginAction:hover {
+  transform: translateY(-4px) scale(1.03);
+  filter:
+    drop-shadow(0 14px 32px rgba(0, 0, 0, 0.85))
+    drop-shadow(0 0 28px rgba(112, 189, 255, 0.85))
+    brightness(1.12);
+}
+
+.loginAction:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.downloadAction:hover .glossGlassReflection,
+.loginAction:hover .glossGlassReflection {
+  opacity: 1;
 }
 
 .platform {
@@ -273,20 +346,33 @@
 @media (width < theme(--breakpoint-tablet)) {
   .hero { min-height: calc(100svh - 64px); }
   .artwork { object-position: 20% top; }
-  .content { padding-top: 180px; padding-bottom: 28px; }
+  .content { padding-top: 160px; padding-bottom: 28px; }
   .logo { margin-bottom: 0; }
-  .actions { gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .button { min-height: 72px; gap: 8px; padding: 12px 10px; }
-  .download > svg { width: 20px; }
+  .actions {
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: 580px;
+  }
   .platformDivider, .invitation { display: none; }
 }
 
+@media (max-width: 520px) {
+  .actions {
+    grid-template-columns: 1fr;
+    max-width: 310px;
+    margin-inline: auto;
+    gap: 12px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .button, .logo, .embers span, .artwork, .content, .title, .subtitle, .description, .actions, .platform {
+  .graphicActionBtn, .logo, .embers span, .artwork, .content, .title, .subtitle, .description, .actions, .platform {
     transition: none !important;
     animation: none !important;
   }
-  .button:hover { transform: none; }
+  .graphicActionBtn:hover { transform: none; }
+  .glossShine, .glossSparkle { display: none; }
 }
 
 @keyframes hero-artwork-drift {
@@ -327,12 +413,38 @@
   50% { filter: brightness(1.14); }
 }
 
-@keyframes button-shine {
-  0%, 58% { left: -45%; }
-  82%, 100% { left: 118%; }
+@keyframes glossy-sweep {
+  0%, 55% {
+    left: -130%;
+    opacity: 0;
+  }
+  58% {
+    opacity: 0.9;
+  }
+  82% {
+    opacity: 0.9;
+  }
+  88%, 100% {
+    left: 200%;
+    opacity: 0;
+  }
 }
 
-@keyframes button-glow {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.13); }
+@keyframes sparkle-flash {
+  0%, 65% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  72% {
+    opacity: 1;
+    transform: scale(1.4) rotate(45deg);
+  }
+  78% {
+    opacity: 0.8;
+    transform: scale(1) rotate(90deg);
+  }
+  84%, 100% {
+    opacity: 0;
+    transform: scale(0.2) rotate(135deg);
+  }
 }
