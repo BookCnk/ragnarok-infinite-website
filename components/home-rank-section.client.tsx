@@ -98,7 +98,7 @@ export function HomeRankSection() {
   });
 
   return (
-    <section id="rank" aria-labelledby="ranking-title" className={styles.section}>
+    <section id="rank" aria-labelledby="ranking-title" className={`${styles.section} motion-section`}>
       {/* Grand Night Palace Background */}
       <Image
         src="/images/rank/bg.png"

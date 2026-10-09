@@ -38,7 +38,7 @@ const previewNews = [
 
 export function HomeNewsSection() {
   return (
-    <section id="news" aria-labelledby="home-news-title" className={styles.section}>
+    <section id="news" aria-labelledby="home-news-title" className={`${styles.section} motion-section`}>
       {/* Night Background Artwork */}
       <Image
         src="/images/event/bg.png"
@@ -114,7 +114,7 @@ export function HomeNewsSection() {
           </Link>
 
           {/* 3 Compact Cards */}
-          <div className={styles.sideList}>
+          <div className={`${styles.sideList} motion-stagger`}>
             {previewNews.map((item) => (
               <Link key={item.id} href={item.href} className={styles.sideCard}>
                 <div className={styles.sideThumb}>

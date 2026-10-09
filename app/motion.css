@@ -1,63 +1,104 @@
-/* Motion utilities are intentionally separate from the theme tokens. */
+/* =========================================
+   Global Motion & Animation System
+   Ragnarok Infinite Design System
+   ========================================= */
+
+:root {
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Page & Section Entrance Animations */
+.motion-page {
+  animation: motion-page-fade 480ms var(--ease-spring) both;
+}
+
 .motion-page > .motion-intro {
-  animation: motion-enter-up 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: motion-enter-up 640ms var(--ease-spring) both;
 }
 
-.motion-page > .motion-section {
-  animation: motion-enter-up 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+.motion-page > .motion-section,
+.motion-section {
+  animation: motion-enter-up 700ms var(--ease-spring) both;
 }
 
-@supports (animation-timeline: view()) {
-  .motion-page > .motion-section {
-    animation-timeline: view();
-    animation-range: entry 5% cover 25%;
-  }
-}
-
+/* Stagger Children Entrance */
 .motion-stagger > * {
-  animation: motion-enter-up 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: motion-enter-up 580ms var(--ease-spring) both;
 }
 
 .motion-stagger > *:nth-child(1) { animation-delay: 40ms; }
-.motion-stagger > *:nth-child(2) { animation-delay: 90ms; }
-.motion-stagger > *:nth-child(3) { animation-delay: 140ms; }
-.motion-stagger > *:nth-child(4) { animation-delay: 190ms; }
-.motion-stagger > *:nth-child(5) { animation-delay: 240ms; }
-.motion-stagger > *:nth-child(6) { animation-delay: 290ms; }
-.motion-stagger > *:nth-child(7) { animation-delay: 340ms; }
-.motion-stagger > *:nth-child(8) { animation-delay: 390ms; }
+.motion-stagger > *:nth-child(2) { animation-delay: 80ms; }
+.motion-stagger > *:nth-child(3) { animation-delay: 120ms; }
+.motion-stagger > *:nth-child(4) { animation-delay: 160ms; }
+.motion-stagger > *:nth-child(5) { animation-delay: 200ms; }
+.motion-stagger > *:nth-child(6) { animation-delay: 240ms; }
+.motion-stagger > *:nth-child(7) { animation-delay: 280ms; }
+.motion-stagger > *:nth-child(8) { animation-delay: 320ms; }
+.motion-stagger > *:nth-child(9) { animation-delay: 360ms; }
+.motion-stagger > *:nth-child(10) { animation-delay: 400ms; }
+.motion-stagger > *:nth-child(11) { animation-delay: 440ms; }
+.motion-stagger > *:nth-child(12) { animation-delay: 480ms; }
 
+/* Interactive Hover Lift */
 .motion-lift {
   transition:
-    transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 260ms cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 260ms ease,
-    background-color 260ms ease;
+    transform 240ms var(--ease-spring),
+    box-shadow 240ms var(--ease-spring),
+    border-color 200ms ease,
+    background-color 200ms ease,
+    filter 200ms ease;
+  will-change: transform;
 }
 
 .motion-lift:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   box-shadow:
-    0 16px 36px -8px rgba(0, 0, 0, 0.45),
-    0 0 20px -2px rgba(201, 154, 80, 0.22);
+    0 16px 36px -8px rgba(0, 0, 0, 0.55),
+    0 0 20px -2px rgba(201, 154, 80, 0.28);
 }
 
 .motion-lift:active {
-  transform: translateY(-2px);
+  transform: translateY(-1px) scale(0.99);
 }
 
-.motion-icon {
-  animation: motion-float 4.5s ease-in-out infinite;
+/* Tactile Click Press */
+.motion-press {
+  transition: transform 160ms var(--ease-spring);
 }
 
+.motion-press:active {
+  transform: scale(0.96);
+}
+
+/* Floating Physics */
+.motion-icon,
+.motion-float {
+  animation: motion-float 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.motion-float-slow {
+  animation: motion-float-slow 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Gentle Breathing Pulse */
 .motion-pulse {
   animation: motion-pulse 2.8s ease-in-out infinite;
 }
 
+/* Golden Ambient Glow Pulse */
 .motion-glow-pulse {
   animation: motion-glow-pulse 3s ease-in-out infinite;
 }
 
+/* Continuous Light Sweep Shimmer */
 .motion-shimmer {
   position: relative;
   overflow: hidden;
@@ -67,37 +108,62 @@
   content: "";
   position: absolute;
   inset: 0;
-  transform: translateX(-100%);
+  transform: translateX(-120%);
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.16) 50%,
     transparent 100%
   );
-  animation: motion-sweep 4.5s ease-in-out infinite;
+  animation: motion-sweep 4.2s ease-in-out infinite;
   pointer-events: none;
 }
 
+/* Interactive Link Underline Expansion */
 .motion-link {
   position: relative;
+  transition: color 180ms ease;
 }
 
 .motion-link::after {
   position: absolute;
   right: 0;
-  bottom: -4px;
+  bottom: -3px;
   left: 0;
-  height: 1px;
+  height: 1.5px;
   background: currentColor;
   content: "";
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 220ms ease;
+  transition: transform 220ms var(--ease-spring);
 }
 
 .motion-link:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+/* Smooth Fade In Utility */
+.motion-fade-in {
+  animation: motion-page-fade 600ms var(--ease-spring) both;
+}
+
+/* Subtle Scale In Utility */
+.motion-scale-in {
+  animation: motion-scale-enter 540ms var(--ease-spring) both;
+}
+
+/* =========================================
+   Keyframe Animations
+   ========================================= */
+
+@keyframes motion-page-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes motion-enter-up {
@@ -111,12 +177,32 @@
   }
 }
 
+@keyframes motion-scale-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes motion-float {
   0%, 100% {
     transform: translate3d(0, 0, 0);
   }
   50% {
     transform: translate3d(0, -6px, 0);
+  }
+}
+
+@keyframes motion-float-slow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(0.5deg);
   }
 }
 
@@ -136,19 +222,20 @@
     filter: drop-shadow(0 0 4px rgba(229, 167, 59, 0.3));
   }
   50% {
-    filter: drop-shadow(0 0 14px rgba(229, 167, 59, 0.75));
+    filter: drop-shadow(0 0 16px rgba(229, 167, 59, 0.75));
   }
 }
 
 @keyframes motion-sweep {
-  0%, 65% {
-    transform: translateX(-100%);
+  0%, 60% {
+    transform: translateX(-120%);
   }
-  100% {
-    transform: translateX(100%);
+  85%, 100% {
+    transform: translateX(120%);
   }
 }
 
+/* Accessibility: Respect Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation: none !important;
