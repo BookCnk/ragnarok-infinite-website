@@ -6,11 +6,11 @@ import {
   demoCredentialsMatch,
   reportDevelopmentFallback,
 } from "@/server/demo";
-import { prisma } from "@/server/prisma";
+import { getPrisma } from "@/server/prisma";
 
 export async function authenticateUser(email: string, password: string) {
   try {
-    const user = await prisma.user.findUnique({
+    const user = await getPrisma().user.findUnique({
       where: { email: email.trim().toLowerCase() },
       select: { id: true, passwordHash: true },
     });
@@ -28,7 +28,7 @@ export async function authenticateUser(email: string, password: string) {
 
 export async function registerUser(email: string, password: string, name?: string) {
   try {
-    const existing = await prisma.user.findUnique({
+    const existing = await getPrisma().user.findUnique({
       where: { email: email.trim().toLowerCase() },
       select: { id: true },
     });
@@ -40,7 +40,7 @@ export async function registerUser(email: string, password: string, name?: strin
     const { hashPassword } = await import("@/server/crypto");
     const passwordHash = await hashPassword(password);
 
-    const user = await prisma.user.create({
+    const user = await getPrisma().user.create({
       data: {
         email: email.trim().toLowerCase(),
         passwordHash,
@@ -58,7 +58,7 @@ export async function registerUser(email: string, password: string, name?: strin
 
 export async function testPrismaConnection(): Promise<boolean> {
   try {
-    await prisma.$queryRaw`SELECT 1`;
+    await getPrisma().$queryRaw`SELECT 1`;
     return true;
   } catch {
     return false;

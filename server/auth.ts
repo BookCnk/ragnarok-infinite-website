@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { cache } from "react";
 import { z } from "zod";
 import { DEMO_USER_ID, getDemoUser, reportDevelopmentFallback } from "./demo";
-import { prisma } from "./prisma";
+import { getPrisma } from "./prisma";
 
 const SESSION_COOKIE = "session_token";
 const TOKEN_ISSUER = "linkflow";
@@ -73,7 +73,7 @@ export const getCurrentUser = cache(async () => {
   if (session.userId === DEMO_USER_ID) return getDemoUser();
 
   try {
-    return await prisma.user.findUnique({
+    return await getPrisma().user.findUnique({
       where: { id: session.userId },
       select: { id: true, email: true, name: true },
     });
