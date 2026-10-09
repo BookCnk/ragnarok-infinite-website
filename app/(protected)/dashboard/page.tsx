@@ -39,9 +39,9 @@ export default async function DashboardPage() {
   ];
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-8">
+    <main className="motion-page mx-auto w-full max-w-5xl px-4 py-10 sm:px-8">
       {/* Header */}
-      <div className="flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="motion-intro flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="mt-1 text-sm text-muted">
@@ -61,7 +61,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* User Info Card */}
-      <section className="mt-8 rounded-xl border border-border bg-surface p-6 shadow-sm">
+      <section className="motion-section motion-lift mt-8 rounded-xl border border-border bg-surface p-6 shadow-sm">
         <div className="flex items-center gap-4">
           <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
             <User className="size-6" />
@@ -74,20 +74,20 @@ export default async function DashboardPage() {
       </section>
 
       {/* System Status */}
-      <section className="mt-8">
+      <section className="motion-section mt-8">
         <h2 className="text-lg font-semibold tracking-tight">System Status</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-3">
+        <div className="motion-stagger mt-4 grid gap-4 sm:grid-cols-3">
           {services.map((service) => (
             <div
               key={service.name}
-              className="flex flex-col justify-between rounded-xl border border-border bg-surface p-5"
+              className="motion-lift flex flex-col justify-between rounded-xl border border-border bg-surface p-5"
             >
               <div className="flex items-center justify-between">
                 <div className="flex size-9 items-center justify-center rounded-lg bg-surface-raised text-foreground">
                   <service.icon className="size-5" />
                 </div>
                 <span
-                  className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                  className={`motion-pulse inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${
                     service.ready
                       ? "bg-success/15 text-success"
                       : "bg-accent/15 text-accent"
@@ -106,7 +106,7 @@ export default async function DashboardPage() {
       </section>
 
       {/* Next Steps for Developers */}
-      <section className="mt-8 rounded-xl border border-border bg-surface-raised/50 p-6">
+      <section className="motion-section motion-lift mt-8 rounded-xl border border-border bg-surface-raised/50 p-6">
         <h3 className="text-base font-semibold">How to build on this template:</h3>
         <ul className="mt-3 space-y-2 text-sm text-muted list-disc list-inside">
           <li>Add your own models to <code className="font-mono text-foreground">prisma/schema.prisma</code></li>

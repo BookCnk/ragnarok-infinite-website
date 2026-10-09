@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_Thai, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import "./motion.css";
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",

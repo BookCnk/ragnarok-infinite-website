@@ -1,0 +1,519 @@
+@reference "../app/globals.css";
+
+.page {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  background-color: var(--nav-surface-solid);
+}
+
+.bgArtwork {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.92);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(6, 18, 34, 0.25) 0%,
+    rgba(6, 18, 34, 0.55) 60%,
+    rgba(4, 14, 28, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 460px;
+  padding: clamp(70px, 9vh, 90px) 16px 30px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* =========================================
+   Logo & Title Section
+   ========================================= */
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.logo {
+  width: min(280px, 66vw);
+  height: auto;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.7));
+  transition: transform 200ms ease;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.titleLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.goldDivider {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nav-edge), transparent);
+}
+
+.mainTitle {
+  font-size: clamp(24px, 2.8vw, 30px);
+  font-weight: 800;
+  color: var(--nav-text);
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(201, 154, 80, 0.35);
+}
+
+.subTitle {
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 500;
+  color: var(--nav-muted);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================================
+   Fantasy HUD Card
+   ========================================= */
+.authCard {
+  position: relative;
+  width: 100%;
+  margin-top: 16px;
+  padding: 24px 24px 20px;
+  background: var(--nav-surface);
+  border: 1px solid var(--nav-edge-soft);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  clip-path: polygon(
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px),
+    0 10px
+  );
+  box-shadow:
+    0 14px 44px rgba(0, 0, 0, 0.65),
+    inset 0 0 0 1px var(--nav-edge-soft);
+  text-align: left;
+}
+
+.cornerTopLeft,
+.cornerTopRight,
+.cornerBottomLeft,
+.cornerBottomRight {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--nav-edge);
+  pointer-events: none;
+}
+
+.cornerTopLeft {
+  top: 4px;
+  left: 4px;
+  border-top: 2px solid var(--nav-edge);
+  border-left: 2px solid var(--nav-edge);
+}
+
+.cornerTopRight {
+  top: 4px;
+  right: 4px;
+  border-top: 2px solid var(--nav-edge);
+  border-right: 2px solid var(--nav-edge);
+}
+
+.cornerBottomLeft {
+  bottom: 4px;
+  left: 4px;
+  border-bottom: 2px solid var(--nav-edge);
+  border-left: 2px solid var(--nav-edge);
+}
+
+.cornerBottomRight {
+  bottom: 4px;
+  right: 4px;
+  border-bottom: 2px solid var(--nav-edge);
+  border-right: 2px solid var(--nav-edge);
+}
+
+/* =========================================
+   Form Fields
+   ========================================= */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 44px;
+  background: rgba(4, 14, 28, 0.85);
+  border: 1px solid var(--nav-edge-soft);
+  border-radius: 6px;
+  padding: 0 12px;
+  transition: all 180ms ease;
+}
+
+.inputWrapper:focus-within {
+  border-color: var(--nav-glow);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+  background: rgba(4, 14, 28, 0.98);
+}
+
+.fieldIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--nav-muted);
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.input {
+  flex: 1;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--nav-text);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.input::placeholder {
+  color: var(--nav-muted);
+  opacity: 0.75;
+}
+
+.eyeBtn {
+  background: none;
+  border: none;
+  color: var(--nav-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 150ms ease;
+}
+
+.eyeBtn:hover {
+  color: var(--nav-text);
+}
+
+.helperText {
+  font-size: 11px;
+  color: var(--nav-muted);
+  margin-top: 4px;
+  padding-left: 4px;
+}
+
+/* =========================================
+   Checkbox & Links Row
+   ========================================= */
+.optionsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--nav-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--nav-action);
+  cursor: pointer;
+}
+
+.termsText {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--nav-muted);
+}
+
+.termsLink {
+  color: var(--nav-glow);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.termsLink:hover {
+  text-decoration: underline;
+  color: var(--nav-text);
+}
+
+.forgotLink {
+  color: var(--nav-glow);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 150ms ease;
+  white-space: nowrap;
+}
+
+.forgotLink:hover {
+  color: var(--nav-text);
+  text-shadow: 0 0 8px var(--nav-glow);
+}
+
+/* =========================================
+   Error Message
+   ========================================= */
+.errorMessage {
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* =========================================
+   Gold Submit Button
+   ========================================= */
+.goldSubmitBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 46px;
+  margin-top: 4px;
+  background: linear-gradient(
+    180deg,
+    var(--nav-gold-start) 0%,
+    var(--nav-gold-mid) 48%,
+    var(--nav-gold-end) 100%
+  );
+  color: var(--nav-action-foreground);
+  font-size: 15px;
+  font-weight: 800;
+  border: 1px solid var(--nav-gold-start);
+  border-radius: 4px;
+  cursor: pointer;
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px),
+    0 8px
+  );
+  box-shadow:
+    0 0 18px rgba(229, 167, 59, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 150ms ease, filter 150ms ease, box-shadow 150ms ease;
+  user-select: none;
+}
+
+.goldSubmitBtn:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(255, 228, 148, 0.65);
+}
+
+.goldSubmitBtn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.goldSubmitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   Social Login Divider & Buttons
+   ========================================= */
+.socialDivider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nav-edge-soft), transparent);
+}
+
+.dividerText {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nav-muted);
+  white-space: nowrap;
+}
+
+.socialGrid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 38px;
+  background: rgba(4, 14, 28, 0.85);
+  border: 1px solid var(--nav-edge-soft);
+  border-radius: 6px;
+  color: var(--nav-text);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.socialBtn:hover {
+  border-color: var(--nav-edge);
+  transform: translateY(-2px);
+  background: rgba(8, 24, 44, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.socialSvg {
+  width: 17px;
+  height: 17px;
+}
+
+/* =========================================
+   Switch Form Footer
+   ========================================= */
+.switchFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--nav-muted);
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--nav-edge-soft);
+}
+
+.switchLink {
+  color: var(--nav-action);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 150ms ease, text-shadow 150ms ease;
+}
+
+.switchLink:hover {
+  color: var(--nav-gold-start);
+  text-shadow: 0 0 8px var(--nav-edge);
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 520px) {
+  .authCard {
+    padding: 20px 16px 18px;
+  }
+  .mainTitle {
+    font-size: 22px;
+  }
+}
+
+.bgArtwork { animation: auth-background-drift 18s ease-in-out infinite alternate; }
+.container { animation: auth-enter 700ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.logoWrapper { animation: auth-logo-float 3.2s ease-in-out infinite; }
+.titleLine { animation: auth-enter 700ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.subTitle { animation: auth-enter 700ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.authCard { animation: auth-enter 760ms 260ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.authCard::after {
+  position: absolute;
+  z-index: 0;
+  inset: 1px;
+  border: 1px solid var(--nav-glow);
+  clip-path: inherit;
+  content: "";
+  opacity: 0.16;
+  pointer-events: none;
+  animation: auth-card-aura 2.2s ease-in-out infinite;
+}
+
+.authCard > * { position: relative; z-index: 1; }
+.cornerTopLeft, .cornerBottomRight { animation: auth-corner-pulse 2.8s ease-in-out infinite; }
+.cornerTopRight, .cornerBottomLeft { animation: auth-corner-pulse 2.8s 1.4s ease-in-out infinite; }
+
+@keyframes auth-enter {
+  from { opacity: 0; transform: translate3d(0, 22px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes auth-logo-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -13px, 0); }
+}
+
+@keyframes auth-background-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@keyframes auth-corner-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes auth-card-aura {
+  0%, 100% { opacity: 0.12; transform: scale(0.99); }
+  50% { opacity: 0.7; transform: scale(1.01); }
+}

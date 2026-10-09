@@ -2,14 +2,16 @@
 
 import { useActionState, useState } from "react";
 import Link from "next/link";
-import { User, Lock, Eye, EyeOff } from "lucide-react";
-import { login } from "./actions";
+import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { register } from "./actions";
 import styles from "@/components/auth-card.module.css";
 
-export function LoginForm() {
-  const [state, action, pending] = useActionState(login, { error: "" });
+export function RegisterForm() {
+  const [state, action, pending] = useActionState(register, { error: "" });
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [agreeTerms, setAgreeTerms] = useState(true);
+  const [subscribeNews, setSubscribeNews] = useState(true);
 
   return (
     <div className={styles.authCard}>
@@ -20,20 +22,40 @@ export function LoginForm() {
       <div aria-hidden="true" className={styles.cornerBottomRight} />
 
       <form action={action} className={styles.form}>
-        {/* Username / Email Field */}
+        {/* Username Field */}
         <div className={styles.fieldGroup}>
           <div className={styles.inputWrapper}>
             <User aria-hidden="true" className={styles.fieldIcon} />
             <input
-              id="login-email"
-              name="email"
+              id="register-username"
+              name="username"
               type="text"
               autoComplete="username"
               required
+              minLength={3}
+              maxLength={20}
               className={styles.input}
-              placeholder="อีเมล / ชื่อผู้ใช้"
+              placeholder="ชื่อผู้ใช้"
             />
           </div>
+          <p className={styles.helperText}>3-20 ตัวอักษร (A-Z, a-z, 0-9)</p>
+        </div>
+
+        {/* Email Field */}
+        <div className={styles.fieldGroup}>
+          <div className={styles.inputWrapper}>
+            <Mail aria-hidden="true" className={styles.fieldIcon} />
+            <input
+              id="register-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className={styles.input}
+              placeholder="อีเมล"
+            />
+          </div>
+          <p className={styles.helperText}>ใช้สำหรับยืนยันบัญชีและกู้คืนรหัสผ่าน</p>
         </div>
 
         {/* Password Field */}
@@ -41,11 +63,12 @@ export function LoginForm() {
           <div className={styles.inputWrapper}>
             <Lock aria-hidden="true" className={styles.fieldIcon} />
             <input
-              id="login-password"
+              id="register-password"
               name="password"
               type={showPassword ? "text" : "password"}
-              autoComplete="current-password"
+              autoComplete="new-password"
               required
+              minLength={8}
               className={styles.input}
               placeholder="รหัสผ่าน"
             />
@@ -62,25 +85,73 @@ export function LoginForm() {
               )}
             </button>
           </div>
+          <p className={styles.helperText}>อย่างน้อย 8 ตัวอักษร (ผสมตัวอักษรและตัวเลข)</p>
         </div>
 
-        {/* Remember me & Forgot password */}
-        <div className={styles.optionsRow}>
-          <label className={styles.checkboxLabel}>
+        {/* Confirm Password Field */}
+        <div className={styles.fieldGroup}>
+          <div className={styles.inputWrapper}>
+            <Lock aria-hidden="true" className={styles.fieldIcon} />
             <input
-              type="checkbox"
-              name="remember"
-              checked={rememberMe}
-              onChange={(e) => setRememberMe(e.target.checked)}
-              className={styles.checkbox}
+              id="register-confirm-password"
+              name="confirmPassword"
+              type={showConfirmPassword ? "text" : "password"}
+              autoComplete="new-password"
+              required
+              minLength={8}
+              className={styles.input}
+              placeholder="ยืนยันรหัสผ่าน"
             />
-            <span>จดจำฉันไว้ในระบบ</span>
-          </label>
-
-          <Link href="/forgot-password" className={styles.forgotLink}>
-            ลืมรหัสผ่าน?
-          </Link>
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className={styles.eyeBtn}
+              aria-label={showConfirmPassword ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}
+            >
+              {showConfirmPassword ? (
+                <EyeOff aria-hidden="true" className={styles.fieldIcon} />
+              ) : (
+                <Eye aria-hidden="true" className={styles.fieldIcon} />
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Checkbox: Terms of Service */}
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            name="terms"
+            required
+            checked={agreeTerms}
+            onChange={(e) => setAgreeTerms(e.target.checked)}
+            className={styles.checkbox}
+          />
+          <span className={styles.termsText}>
+            ฉันยอมรับ{" "}
+            <Link href="/terms" className={styles.termsLink}>
+              ข้อกำหนดการใช้งาน
+            </Link>{" "}
+            และ{" "}
+            <Link href="/privacy" className={styles.termsLink}>
+              นโยบายความเป็นส่วนตัว
+            </Link>
+          </span>
+        </label>
+
+        {/* Checkbox: News Subscription */}
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            name="newsletter"
+            checked={subscribeNews}
+            onChange={(e) => setSubscribeNews(e.target.checked)}
+            className={styles.checkbox}
+          />
+          <span className={styles.termsText}>
+            รับข่าวสารและกิจกรรมจาก Ragnarok III Infinite
+          </span>
+        </label>
 
         {/* Error Alert */}
         {state?.error ? (
@@ -95,13 +166,13 @@ export function LoginForm() {
           disabled={pending}
           className={styles.goldSubmitBtn}
         >
-          {pending ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
+          {pending ? "กำลังสมัครสมาชิก..." : "สมัครสมาชิก"}
         </button>
 
-        {/* Social Login Divider */}
+        {/* Social Register Divider */}
         <div className={styles.socialDivider}>
           <span className={styles.dividerLine} />
-          <span className={styles.dividerText}>หรือเข้าสู่ระบบด้วย</span>
+          <span className={styles.dividerText}>หรือสมัครด้วย</span>
           <span className={styles.dividerLine} />
         </div>
 
@@ -109,9 +180,9 @@ export function LoginForm() {
         <div className={styles.socialGrid}>
           <button
             type="button"
-            aria-label="เข้าสู่ระบบด้วย Google"
+            aria-label="สมัครด้วย Google"
             className={styles.socialBtn}
-            onClick={() => alert("ระบบ Google Login กำลังเชื่อมต่อในเร็วๆ นี้")}
+            onClick={() => alert("ระบบ Google สมัครสมาชิกกำลังเชื่อมต่อในเร็วๆ นี้")}
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className={styles.socialSvg}>
               <path
@@ -135,9 +206,9 @@ export function LoginForm() {
 
           <button
             type="button"
-            aria-label="เข้าสู่ระบบด้วย Facebook"
+            aria-label="สมัครด้วย Facebook"
             className={styles.socialBtn}
-            onClick={() => alert("ระบบ Facebook Login กำลังเชื่อมต่อในเร็วๆ นี้")}
+            onClick={() => alert("ระบบ Facebook สมัครสมาชิกกำลังเชื่อมต่อในเร็วๆ นี้")}
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className={styles.socialSvg}>
               <path
@@ -149,9 +220,9 @@ export function LoginForm() {
 
           <button
             type="button"
-            aria-label="เข้าสู่ระบบด้วย Steam"
+            aria-label="สมัครด้วย Steam"
             className={styles.socialBtn}
-            onClick={() => alert("ระบบ Steam Login กำลังเชื่อมต่อในเร็วๆ นี้")}
+            onClick={() => alert("ระบบ Steam สมัครสมาชิกกำลังเชื่อมต่อในเร็วๆ นี้")}
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className={styles.socialSvg}>
               <path
@@ -163,9 +234,9 @@ export function LoginForm() {
 
           <button
             type="button"
-            aria-label="เข้าสู่ระบบด้วย Apple"
+            aria-label="สมัครด้วย Apple"
             className={styles.socialBtn}
-            onClick={() => alert("ระบบ Apple Login กำลังเชื่อมต่อในเร็วๆ นี้")}
+            onClick={() => alert("ระบบ Apple สมัครสมาชิกกำลังเชื่อมต่อในเร็วๆ นี้")}
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className={styles.socialSvg}>
               <path
@@ -176,11 +247,11 @@ export function LoginForm() {
           </button>
         </div>
 
-        {/* Switch to Register link */}
+        {/* Switch to Login link */}
         <div className={styles.switchFooter}>
-          <span>ยังไม่มีบัญชีผู้เล่น?</span>
-          <Link href="/register" className={styles.switchLink}>
-            สมัครสมาชิก &gt;
+          <span>มีบัญชีอยู่แล้ว?</span>
+          <Link href="/login" className={styles.switchLink}>
+            เข้าสู่ระบบ &gt;
           </Link>
         </div>
       </form>

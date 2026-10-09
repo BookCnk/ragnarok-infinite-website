@@ -26,6 +26,36 @@ export async function authenticateUser(email: string, password: string) {
   }
 }
 
+export async function registerUser(email: string, password: string, name?: string) {
+  try {
+    const existing = await prisma.user.findUnique({
+      where: { email: email.trim().toLowerCase() },
+      select: { id: true },
+    });
+
+    if (existing) {
+      return { error: "อีเมลนี้ถูกใช้งานในระบบแล้ว" };
+    }
+
+    const { hashPassword } = await import("@/server/crypto");
+    const passwordHash = await hashPassword(password);
+
+    const user = await prisma.user.create({
+      data: {
+        email: email.trim().toLowerCase(),
+        passwordHash,
+        name: name?.trim() || null,
+      },
+      select: { id: true },
+    });
+
+    return { session: { userId: user.id } };
+  } catch (error) {
+    reportDevelopmentFallback(error);
+    return { session: { userId: DEMO_USER_ID } };
+  }
+}
+
 export async function testPrismaConnection(): Promise<boolean> {
   try {
     await prisma.$queryRaw`SELECT 1`;

@@ -4,15 +4,15 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/server/auth";
 import { GameNavbar } from "@/components/game-navbar";
-import { LoginForm } from "./login-form.client";
+import { RegisterForm } from "./register-form.client";
 import styles from "@/components/auth-card.module.css";
 
 export const metadata: Metadata = {
-  title: "เข้าสู่ระบบ | Ragnarok Infinite",
-  description: "เข้าสู่ระบบ Ragnarok Infinite กลับสู่โลกที่คุณรักอีกครั้ง สัมผัสความสนุกไร้ขีดจำกัด",
+  title: "สมัครสมาชิก | Ragnarok Infinite",
+  description: "สมัครสมาชิก Ragnarok Infinite เริ่มต้นการผจญภัยครั้งใหม่ไปด้วยกัน สัมผัสโลกแฟนตาซีสุดคลาสสิก",
 };
 
-export default async function LoginPage() {
+export default async function RegisterPage() {
   if (await getCurrentUser()) {
     redirect("/dashboard");
   }
@@ -24,8 +24,8 @@ export default async function LoginPage() {
 
       {/* Background Anime Artwork */}
       <Image
-        src="/images/hero/bg.png"
-        alt="Ragnarok Infinite Background"
+        src="/images/dowlaod/bg.png"
+        alt="Ragnarok Infinite Register Background"
         fill
         priority
         className={styles.bgArtwork}
@@ -53,13 +53,13 @@ export default async function LoginPage() {
         {/* Title & Subtitle */}
         <div className={styles.titleLine}>
           <span aria-hidden="true" className={styles.goldDivider} />
-          <h1 className={styles.mainTitle}>เข้าสู่ระบบ</h1>
+          <h1 className={styles.mainTitle}>สมัครสมาชิก</h1>
           <span aria-hidden="true" className={styles.goldDivider} />
         </div>
-        <p className={styles.subTitle}>✦ กลับสู่โลกที่คุณรักอีกครั้ง ✦</p>
+        <p className={styles.subTitle}>✦ เริ่มต้นการผจญภัยครั้งใหม่ไปด้วยกัน ✦</p>
 
         {/* Client Form Card */}
-        <LoginForm />
+        <RegisterForm />
       </main>
     </div>
   );

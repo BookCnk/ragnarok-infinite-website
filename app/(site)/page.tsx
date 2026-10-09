@@ -66,7 +66,7 @@ const starterPacks = [
 
 export default function HomePage() {
   return (
-    <main className="bg-background text-foreground">
+    <main className="motion-page bg-background text-foreground">
       {/* Fixed Centered Fantasy Navigation Bar */}
       <GameNavbar />
 
@@ -76,7 +76,7 @@ export default function HomePage() {
       {/* Download Section */}
       <section
         id="download"
-        className="relative scroll-mt-20 border-b border-border bg-surface/40 px-4 py-16 sm:px-6 md:py-24"
+        className="motion-section relative scroll-mt-20 border-b border-border bg-surface/40 px-4 py-16 sm:px-6 md:py-24"
       >
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
@@ -93,11 +93,11 @@ export default function HomePage() {
           </div>
 
           {/* Download cards */}
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="motion-stagger mt-10 grid gap-6 md:grid-cols-2">
             {downloadSources.map((item, idx) => (
               <div
                 key={idx}
-                className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:border-gold/60"
+                className="motion-lift flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:border-gold/60"
               >
                 <div>
                   <div className="flex items-center justify-between">
@@ -173,7 +173,7 @@ export default function HomePage() {
       {/* Server Info Section */}
       <section
         id="server-info"
-        className="relative scroll-mt-20 border-b border-border bg-background px-4 py-16 sm:px-6 md:py-24"
+        className="motion-section relative scroll-mt-20 border-b border-border bg-background px-4 py-16 sm:px-6 md:py-24"
       >
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
@@ -190,11 +190,11 @@ export default function HomePage() {
           </div>
 
           {/* Rates Grid */}
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+          <div className="motion-stagger mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
             {serverRates.map((rate, idx) => (
               <div
                 key={idx}
-                className="group rounded-xl border border-border bg-card p-5 transition hover:border-gold/60 hover:bg-surface-raised"
+                className="motion-lift group rounded-xl border border-border bg-card p-5 transition hover:border-gold/60 hover:bg-surface-raised"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold tracking-wider text-muted uppercase">
@@ -242,7 +242,7 @@ export default function HomePage() {
       {/* Guide & Starter Section */}
       <section
         id="guide"
-        className="relative scroll-mt-20 border-b border-border bg-surface/40 px-4 py-16 sm:px-6 md:py-24"
+        className="motion-section relative scroll-mt-20 border-b border-border bg-surface/40 px-4 py-16 sm:px-6 md:py-24"
       >
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
@@ -258,9 +258,9 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
+          <div className="motion-stagger mt-10 grid gap-8 md:grid-cols-2">
             {/* Starter Box Items */}
-            <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <div className="motion-lift rounded-2xl border border-border bg-card p-6 sm:p-8">
               <div className="flex items-center gap-3">
                 <div className="flex size-10 items-center justify-center rounded-xl bg-badge-bg text-gold border border-badge-border">
                   <Sparkles className="size-5" />
@@ -284,7 +284,7 @@ export default function HomePage() {
             </div>
 
             {/* Quick 4 Steps */}
-            <div className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <div className="motion-lift flex flex-col justify-between rounded-2xl border border-border bg-card p-6 sm:p-8">
               <div>
                 <h3 className="text-base font-bold text-foreground sm:text-lg">
                   ขั้นตอนการเริ่มต้นผจญภัย
@@ -349,7 +349,7 @@ export default function HomePage() {
       {/* Refill Section */}
       <section
         id="refill"
-        className="relative scroll-mt-20 border-b border-border bg-background px-4 py-16 sm:px-6 md:py-24"
+        className="motion-section relative scroll-mt-20 border-b border-border bg-background px-4 py-16 sm:px-6 md:py-24"
       >
         <div className="mx-auto max-w-4xl text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-badge-border bg-badge-bg px-3.5 py-1 text-xs font-bold text-badge-text">

@@ -1,0 +1,452 @@
+@reference "../app/globals.css";
+
+.page {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+  background-color: var(--nav-surface-solid);
+}
+
+.bgArtwork {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.92);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(6, 18, 34, 0.25) 0%,
+    rgba(6, 18, 34, 0.55) 60%,
+    rgba(4, 14, 28, 0.88) 100%
+  );
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 680px;
+  padding: clamp(80px, 11vh, 105px) 16px 40px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* =========================================
+   Logo & Title Section
+   ========================================= */
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.logo {
+  width: min(290px, 68vw);
+  height: auto;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.7));
+  transition: transform 200ms ease;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.titleLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.goldDivider {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nav-edge), transparent);
+}
+
+.mainTitle {
+  font-size: clamp(24px, 2.8vw, 32px);
+  font-weight: 800;
+  color: var(--nav-text);
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 16px rgba(201, 154, 80, 0.35);
+}
+
+.subTitle {
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 500;
+  color: var(--nav-muted);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================================
+   HUD Cards Base
+   ========================================= */
+.hudCard {
+  position: relative;
+  width: 100%;
+  background: var(--nav-surface);
+  border: 1px solid var(--nav-edge-soft);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  clip-path: polygon(
+    10px 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    10px 100%,
+    0 calc(100% - 10px),
+    0 10px
+  );
+  box-shadow:
+    0 14px 44px rgba(0, 0, 0, 0.65),
+    inset 0 0 0 1px var(--nav-edge-soft);
+}
+
+.cornerTopLeft,
+.cornerTopRight,
+.cornerBottomLeft,
+.cornerBottomRight {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--nav-edge);
+  pointer-events: none;
+}
+
+.cornerTopLeft {
+  top: 4px;
+  left: 4px;
+  border-top: 2px solid var(--nav-edge);
+  border-left: 2px solid var(--nav-edge);
+}
+
+.cornerTopRight {
+  top: 4px;
+  right: 4px;
+  border-top: 2px solid var(--nav-edge);
+  border-right: 2px solid var(--nav-edge);
+}
+
+.cornerBottomLeft {
+  bottom: 4px;
+  left: 4px;
+  border-bottom: 2px solid var(--nav-edge);
+  border-left: 2px solid var(--nav-edge);
+}
+
+.cornerBottomRight {
+  bottom: 4px;
+  right: 4px;
+  border-bottom: 2px solid var(--nav-edge);
+  border-right: 2px solid var(--nav-edge);
+}
+
+/* =========================================
+   Primary Download Card
+   ========================================= */
+.downloadCard {
+  max-width: 500px;
+  margin-top: 20px;
+  padding: 24px 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.platformHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.windowsLogo {
+  width: 44px;
+  height: 44px;
+  color: var(--nav-glow);
+  flex-shrink: 0;
+}
+
+.platformInfo {
+  text-align: left;
+}
+
+.platformTitle {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--nav-text);
+  letter-spacing: 0.02em;
+}
+
+.platformSubtitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--nav-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.goldDownloadBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 380px;
+  height: 48px;
+  background: linear-gradient(
+    180deg,
+    var(--nav-gold-start) 0%,
+    var(--nav-gold-mid) 48%,
+    var(--nav-gold-end) 100%
+  );
+  color: var(--nav-action-foreground);
+  font-size: 16px;
+  font-weight: 800;
+  border: 1px solid var(--nav-gold-start);
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  clip-path: polygon(
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px),
+    0 8px
+  );
+  box-shadow:
+    0 0 20px rgba(229, 167, 59, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 150ms ease, filter 150ms ease, box-shadow 150ms ease;
+  user-select: none;
+}
+
+.goldDownloadBtn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 0 26px rgba(255, 228, 148, 0.7);
+}
+
+.goldDownloadBtn:active {
+  transform: translateY(1px);
+}
+
+.downloadIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--nav-action-foreground);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--nav-muted);
+  font-weight: 500;
+}
+
+.metaSeparator {
+  opacity: 0.4;
+}
+
+.guideLink {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--nav-glow);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 150ms ease;
+}
+
+.guideLink:hover {
+  color: var(--nav-text);
+  text-shadow: 0 0 8px var(--nav-glow);
+}
+
+/* =========================================
+   System Requirements Card
+   ========================================= */
+.specsCard {
+  width: 100%;
+  max-width: 640px;
+  margin-top: 16px;
+  padding: 18px 24px 20px;
+  text-align: left;
+}
+
+.specsHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--nav-text);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--nav-edge-soft);
+}
+
+.specsHeaderIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--nav-edge);
+}
+
+.specsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.specColTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nav-text);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.specColTitleRecommended {
+  color: var(--nav-gold-start);
+}
+
+.specTable {
+  width: 100%;
+  font-size: 11px;
+  border-collapse: collapse;
+}
+
+.specRow {
+  display: flex;
+  align-items: baseline;
+  padding: 3.5px 0;
+  line-height: 1.4;
+}
+
+.specLabel {
+  width: 58px;
+  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--nav-muted);
+}
+
+.specValue {
+  flex: 1;
+  color: var(--nav-text);
+  font-weight: 500;
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 600px) {
+  .specsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .downloadCard {
+    padding: 20px 16px 18px;
+  }
+
+  .specsCard {
+    padding: 16px 16px 18px;
+  }
+
+  .mainTitle {
+    font-size: 24px;
+  }
+}
+
+.bgArtwork { animation: download-background-drift 18s ease-in-out infinite alternate; }
+.container { animation: download-enter 700ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.logoWrapper { animation: download-logo-float 3.2s ease-in-out infinite; }
+.titleLine, .subTitle { animation: download-enter 700ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.downloadCard { animation: download-enter 760ms 200ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.downloadCard::after,
+.specsCard::after {
+  position: absolute;
+  z-index: 0;
+  inset: 1px;
+  border: 1px solid var(--nav-glow);
+  clip-path: inherit;
+  content: "";
+  opacity: 0.14;
+  pointer-events: none;
+  animation: download-card-aura 2.4s ease-in-out infinite;
+}
+
+.downloadCard > *, .specsCard > * { position: relative; z-index: 1; }
+.specsCard { animation: download-enter 760ms 320ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.windowsLogo { animation: download-icon-float 3.8s ease-in-out infinite; }
+.cornerTopLeft, .cornerBottomRight { animation: download-corner-pulse 2.8s ease-in-out infinite; }
+.cornerTopRight, .cornerBottomLeft { animation: download-corner-pulse 2.8s 1.4s ease-in-out infinite; }
+
+@keyframes download-enter {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes download-logo-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -13px, 0); }
+}
+
+@keyframes download-background-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+@keyframes download-icon-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+  50% { transform: translate3d(0, -5px, 0) rotate(2deg); }
+}
+
+@keyframes download-corner-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes download-card-aura {
+  0%, 100% { opacity: 0.1; transform: scale(0.99); }
+  50% { opacity: 0.65; transform: scale(1.01); }
+}

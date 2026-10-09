@@ -12,6 +12,7 @@
   padding: 16px clamp(12px, 3vw, 40px) 0;
   pointer-events: none;
   transition: padding 200ms ease, filter 200ms ease;
+  animation: navbar-drop 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .headerScrolled {
@@ -71,6 +72,7 @@
   transform: translateX(-50%) rotate(45deg);
   box-shadow: 0 0 6px var(--nav-edge);
   pointer-events: none;
+  animation: navbar-ornament 2.6s ease-in-out infinite;
 }
 
 .menuList {
@@ -157,6 +159,7 @@
     0 0 16px 2px var(--nav-glow);
   border-radius: 9999px;
   pointer-events: none;
+  animation: navbar-flare 2.4s ease-in-out infinite;
 }
 
 /* =========================================
@@ -439,4 +442,19 @@
     font-size: 13px;
     padding: 0 14px;
   }
+}
+
+@keyframes navbar-drop {
+  from { opacity: 0; transform: translate3d(0, -18px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes navbar-ornament {
+  0%, 100% { transform: translateX(-50%) rotate(45deg) scale(0.9); opacity: 0.72; }
+  50% { transform: translateX(-50%) rotate(45deg) scale(1.12); opacity: 1; }
+}
+
+@keyframes navbar-flare {
+  0%, 100% { opacity: 0.55; transform: scaleX(0.8); }
+  50% { opacity: 1; transform: scaleX(1); }
 }

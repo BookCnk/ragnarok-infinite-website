@@ -80,7 +80,7 @@
   height: auto;
   margin-bottom: -10px;
   filter: drop-shadow(0 6px 20px var(--hero-surface));
-  animation: logo-float 5s ease-in-out infinite;
+  animation: logo-float 3.2s ease-in-out infinite;
 }
 
 .title {
@@ -91,6 +91,7 @@
   letter-spacing: 0.025em;
   color: var(--hero-foreground);
   text-shadow: 0 2px 0 var(--hero-title-edge), 0 0 22px var(--hero-glow), 0 4px 12px var(--hero-surface);
+  animation: title-glow 2.8s ease-in-out infinite;
 }
 
 .subtitle {
@@ -279,7 +280,12 @@
 
 @keyframes logo-float {
   0%, 100% { transform: translateY(0) rotate(-0.45deg); }
-  50% { transform: translateY(-11px) rotate(0.45deg); }
+  50% { transform: translateY(-16px) rotate(0.45deg); }
+}
+
+@keyframes title-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.14); }
 }
 
 @keyframes button-shine {

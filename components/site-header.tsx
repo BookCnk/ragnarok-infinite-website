@@ -6,21 +6,21 @@ type User = { email: string; name: string | null } | null;
 
 export function SiteHeader({ user }: { user: User }) {
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md motion-page">
       <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between px-4 sm:px-8">
         <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2 text-base font-extrabold tracking-tight text-foreground hover:opacity-90">
-            <div className="flex size-8 items-center justify-center rounded-lg bg-gold text-gold-foreground">
+          <Link href="/" className="motion-link flex items-center gap-2 text-base font-extrabold tracking-tight text-foreground hover:opacity-90">
+            <div className="motion-icon flex size-8 items-center justify-center rounded-lg bg-gold text-gold-foreground">
               <Swords className="size-4" />
             </div>
             <span>RAGNAROK INFINITE</span>
           </Link>
           <nav aria-label="Primary navigation" className="hidden items-center gap-5 text-sm font-medium text-muted md:flex">
-            <Link href="/" className="transition hover:text-foreground">หน้าแรก</Link>
-            <Link href="/#download" className="transition hover:text-foreground">ดาวน์โหลด</Link>
-            <Link href="/#server-info" className="transition hover:text-foreground">ข้อมูลเซิร์ฟ</Link>
-            <Link href="/#guide" className="transition hover:text-foreground">คู่มือการเล่น</Link>
-            <Link href="/#refill" className="transition hover:text-foreground">เติมเงิน</Link>
+            <Link href="/" className="motion-link transition hover:text-foreground">หน้าแรก</Link>
+            <Link href="/#download" className="motion-link transition hover:text-foreground">ดาวน์โหลด</Link>
+            <Link href="/#server-info" className="motion-link transition hover:text-foreground">ข้อมูลเซิร์ฟ</Link>
+            <Link href="/#guide" className="motion-link transition hover:text-foreground">คู่มือการเล่น</Link>
+            <Link href="/#refill" className="motion-link transition hover:text-foreground">เติมเงิน</Link>
           </nav>
         </div>
 
