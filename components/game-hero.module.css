@@ -13,6 +13,7 @@
   z-index: -3;
   object-fit: cover;
   object-position: 42% center;
+  animation: hero-artwork-drift 22s ease-in-out infinite alternate;
 }
 
 .shade {
@@ -73,6 +74,7 @@
   margin-inline: auto;
   padding: clamp(48px, 10vh, 130px) 20px 34px;
   text-align: center;
+  animation: hero-enter 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .logo {
@@ -80,7 +82,9 @@
   height: auto;
   margin-bottom: -10px;
   filter: drop-shadow(0 6px 20px var(--hero-surface));
-  animation: logo-float 3.2s ease-in-out infinite;
+  animation:
+    hero-enter 850ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    logo-float 4.2s ease-in-out infinite 850ms;
 }
 
 .title {
@@ -91,7 +95,9 @@
   letter-spacing: 0.025em;
   color: var(--hero-foreground);
   text-shadow: 0 2px 0 var(--hero-title-edge), 0 0 22px var(--hero-glow), 0 4px 12px var(--hero-surface);
-  animation: title-glow 2.8s ease-in-out infinite;
+  animation:
+    hero-enter 750ms 140ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    title-glow 2.8s ease-in-out infinite;
 }
 
 .subtitle {
@@ -103,6 +109,7 @@
   font-size: clamp(22px, 2.5vw, 34px);
   font-weight: 500;
   letter-spacing: 0;
+  animation: hero-enter 750ms 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .ornament {
@@ -121,6 +128,7 @@
   box-shadow: 0 0 12px 3px var(--hero-glow);
   content: "";
   transform: rotate(45deg);
+  animation: ornament-sparkle 2.6s ease-in-out infinite;
 }
 
 .description {
@@ -129,6 +137,7 @@
   line-height: 1.7;
   color: var(--hero-muted);
   text-shadow: 0 2px 6px var(--hero-surface);
+  animation: hero-enter 750ms 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .actions {
@@ -137,6 +146,7 @@
   gap: 18px;
   width: min(100%, 720px);
   margin-top: 26px;
+  animation: hero-enter 800ms 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .button {
@@ -232,6 +242,7 @@
   color: var(--hero-muted);
   font-size: 14px;
   text-align: left;
+  animation: hero-enter 800ms 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .platformDetail {
@@ -255,6 +266,10 @@
   font-size: 12px;
 }
 
+.invitation svg {
+  animation: invitation-twinkle 2.8s ease-in-out infinite;
+}
+
 @media (width < theme(--breakpoint-tablet)) {
   .hero { min-height: calc(100svh - 64px); }
   .artwork { object-position: 20% top; }
@@ -267,13 +282,37 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .button, .logo, .embers span { transition: none; animation: none; }
+  .button, .logo, .embers span, .artwork, .content, .title, .subtitle, .description, .actions, .platform {
+    transition: none !important;
+    animation: none !important;
+  }
   .button:hover { transform: none; }
+}
+
+@keyframes hero-artwork-drift {
+  from { transform: scale(1); }
+  to { transform: scale(1.048); }
+}
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translate3d(0, 26px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes ornament-sparkle {
+  0%, 100% { transform: rotate(45deg) scale(0.9); opacity: 0.7; }
+  50% { transform: rotate(225deg) scale(1.25); opacity: 1; filter: drop-shadow(0 0 6px var(--hero-glow)); }
+}
+
+@keyframes invitation-twinkle {
+  0%, 100% { opacity: 0.6; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.18); filter: drop-shadow(0 0 4px var(--hero-glow)); }
 }
 
 @keyframes ember-rise {
   0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.45); }
   12% { opacity: 0.92; }
+  50% { transform: translate3d(16px, -36vh, 0) scale(0.85); }
   76% { opacity: 0.48; }
   100% { opacity: 0; transform: translate3d(38px, -72vh, 0) scale(1.2); }
 }

@@ -210,7 +210,7 @@ export default function HomePage() {
           </div>
 
           {/* WoE Guild War Prize Card */}
-          <div className="mt-8 overflow-hidden rounded-2xl border border-badge-border bg-gradient-to-r from-badge-bg via-surface to-badge-bg p-6 text-foreground sm:p-8">
+          <div className="motion-shimmer mt-8 overflow-hidden rounded-2xl border border-badge-border bg-gradient-to-r from-badge-bg via-surface to-badge-bg p-6 text-foreground sm:p-8">
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
               <div className="space-y-2 text-center md:text-left">
                 <div className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3 py-0.5 text-xs font-bold text-gold border border-gold/30">
@@ -229,7 +229,7 @@ export default function HomePage() {
 
               <Link
                 href="/login"
-                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-gold px-6 py-3 text-sm font-extrabold text-gold-foreground shadow-md transition hover:bg-gold-hover hover:scale-105"
+                className="motion-glow-pulse inline-flex shrink-0 items-center gap-2 rounded-xl bg-gold px-6 py-3 text-sm font-extrabold text-gold-foreground shadow-md transition hover:bg-gold-hover hover:scale-105"
               >
                 <Swords className="size-4" />
                 <span>ลงทะเบียนกิลด์เข้าร่วม</span>
@@ -391,7 +391,7 @@ export default function HomePage() {
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2 rounded-xl bg-gold px-6 py-3 text-sm font-extrabold text-gold-foreground shadow-md transition hover:bg-gold-hover hover:scale-105"
+                className="motion-glow-pulse inline-flex items-center gap-2 rounded-xl bg-gold px-6 py-3 text-sm font-extrabold text-gold-foreground shadow-md transition hover:bg-gold-hover hover:scale-105"
               >
                 <Coins className="size-4" />
                 <span>เข้าสู่ระบบเพื่อเติมเงิน</span>

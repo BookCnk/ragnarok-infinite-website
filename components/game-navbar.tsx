@@ -20,7 +20,7 @@ interface NavMenuItem {
 
 const menuItems: NavMenuItem[] = [
   { label: "หน้าแรก", href: "/" },
-  { label: "ข่าวสาร", href: "/#news" },
+  { label: "ข่าวสาร", href: "/event" },
   { label: "แนะนำเกม", href: "/#guide" },
   { label: "อาชีพ", href: "/#classes" },
   { label: "ระบบเกม", href: "/#systems" },
@@ -59,7 +59,7 @@ export function GameNavbar() {
               const isActive =
                 item.href === "/"
                   ? pathname === "/"
-                  : pathname === item.href;
+                  : pathname.startsWith(item.href) || (item.href === "/event" && pathname.startsWith("/news"));
 
               if (isActive) {
                 return (
