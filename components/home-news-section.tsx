@@ -52,7 +52,7 @@ export function HomeNewsSection() {
 
       <div className={styles.container}>
         {/* Header Row */}
-        <div className={styles.headerRow}>
+        <div className={styles.headerRow} data-motion="fade-up">
           <div className={styles.titleArea}>
             <span className={styles.badge}>
               <Sparkles className={styles.badgeIcon} />
@@ -75,7 +75,7 @@ export function HomeNewsSection() {
         {/* Grid: Featured Left + 3 Side Cards Right */}
         <div className={styles.grid}>
           {/* Featured Hero Card */}
-          <Link href="/event" className={styles.featuredCard}>
+          <Link href="/event" className={styles.featuredCard} data-motion="fade-right">
             {/* Corner Filigree Accents */}
             <div aria-hidden="true" className={styles.cornerTopLeft} />
             <div aria-hidden="true" className={styles.cornerTopRight} />
@@ -114,7 +114,7 @@ export function HomeNewsSection() {
           </Link>
 
           {/* 3 Compact Cards */}
-          <div className={`${styles.sideList} motion-stagger`}>
+          <div className={styles.sideList} data-motion="stagger">
             {previewNews.map((item) => (
               <Link key={item.id} href={item.href} className={styles.sideCard}>
                 <div className={styles.sideThumb}>

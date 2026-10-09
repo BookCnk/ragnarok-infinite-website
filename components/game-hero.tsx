@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Monitor, Sparkle } from "lucide-react";
+import { Monitor, Sparkle, ChevronDown } from "lucide-react";
 import styles from "./game-hero.module.css";
 
 const embers = Array.from({ length: 18 });
@@ -92,6 +92,19 @@ export function GameHero() {
           <span aria-hidden="true" className={styles.platformDivider} />
           <span className={styles.invitation}><Sparkle aria-hidden="true" size={15} /> การผจญภัยครั้งใหม่รอคุณอยู่</span>
         </div>
+
+        {/* Animated Scroll Down Indicator */}
+        <a
+          href="#news"
+          className={styles.scrollIndicator}
+          aria-label="เลื่อนลงไปยังส่วนข่าวสารและกิจกรรม"
+        >
+          <span className={styles.scrollMouse} aria-hidden="true">
+            <span className={styles.scrollWheel} />
+          </span>
+          <span className={styles.scrollText}>SCROLL TO EXPLORE</span>
+          <ChevronDown aria-hidden="true" size={14} className={styles.scrollChevron} />
+        </a>
       </div>
     </section>
   );

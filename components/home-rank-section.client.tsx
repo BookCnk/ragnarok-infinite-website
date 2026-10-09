@@ -112,7 +112,7 @@ export function HomeRankSection() {
 
       <div className={styles.container}>
         {/* Header: Title, Star Sparkle & Subtitle */}
-        <div className={styles.headerArea}>
+        <div className={styles.headerArea} data-motion="fade-up">
           <div className={styles.titleRow}>
             <h2 id="ranking-title" className={styles.heading}>อันดับ</h2>
             <Sparkles className={`${styles.sparkleIcon} size-7`} />
@@ -130,7 +130,7 @@ export function HomeRankSection() {
         </div>
 
         {/* Category Tabs Bar */}
-        <div className={styles.tabsBar}>
+        <div className={styles.tabsBar} data-motion="fade-up">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -152,10 +152,10 @@ export function HomeRankSection() {
         </div>
 
         {/* Main Grid: Left Top 3 Podium + Right Ranking Table */}
-        <div className={styles.mainGrid}>
+        <div className={styles.mainGrid} data-motion="fade-up">
           {/* Left: Top 3 Podium Cards */}
           <div className={styles.podiumContainer}>
-            <div className={styles.podiumCards}>
+            <div key={activeTab} className={`${styles.podiumCards} motion-tab-enter`}>
               {/* Rank 2 (Left - Silver - Lunaria) */}
               <div className={`${styles.podiumCard} ${styles.podiumRank2}`}>
                 <div className={`${styles.podiumCrown} ${styles.crownRank2}`}>
@@ -282,7 +282,7 @@ export function HomeRankSection() {
                   <th className={`${styles.th} ${styles.thScore}`}>เลเวล</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody key={activeTab} className="motion-tab-enter">
                 {filteredPlayers.map((player) => {
                   const isTop1 = player.rank === 1;
                   const isTop2 = player.rank === 2;

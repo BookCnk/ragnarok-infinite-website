@@ -74,7 +74,7 @@ export function GameFooter() {
 
       <div className={styles.container}>
         {/* Main 4-Column Grid */}
-        <div className={styles.grid}>
+        <div className={styles.grid} data-motion="stagger">
           {/* Column 1: Brand & Lore */}
           <div className={styles.brandCol}>
             <Link href="/" className={styles.brandLink} aria-label="Ragnarok Infinite หน้าแรก">
@@ -175,7 +175,7 @@ export function GameFooter() {
         </div>
 
         {/* Bottom Bar / Sub-footer */}
-        <div className={styles.bottomBar}>
+        <div className={styles.bottomBar} data-motion="fade-up">
           <div className={styles.copyrightGroup}>
             <p className={styles.copyrightText}>
               © 2026 <strong>Ragnarok Infinite</strong>. All rights reserved.
