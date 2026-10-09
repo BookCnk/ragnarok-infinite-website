@@ -1,5 +1,8 @@
 @reference "../app/globals.css";
 
+/* =========================================
+   Master Header & Fixed Shell
+   ========================================= */
 .header {
   position: fixed;
   top: 0;
@@ -9,55 +12,63 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 16px clamp(12px, 3vw, 40px) 0;
+  padding: 14px clamp(12px, 2.5vw, 36px) 0;
   pointer-events: none;
-  transition: padding 200ms ease, filter 200ms ease;
-  animation: navbar-drop 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: padding 240ms cubic-bezier(0.16, 1, 0.3, 1), filter 240ms ease;
+  animation: navbar-drop 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .headerScrolled {
-  padding-top: 10px;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55));
+  padding-top: 8px;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.65));
 }
 
+/* =========================================
+   Unified Floating Nav Bar Capsule
+   ========================================= */
 .navBar {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: auto;
-  max-width: 100%;
-  margin-inline: auto;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1240px;
+  height: 54px;
+  padding: 0 8px 0 16px;
+  background: var(--nav-surface);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--nav-edge-soft);
+  border-radius: 9999px;
+  box-shadow:
+    0 10px 32px -4px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    inset 0 0 16px rgba(201, 154, 80, 0.05);
   pointer-events: auto;
+  transition:
+    background 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease;
 }
 
-/* =========================================
-   Left Main Menu Frame (Fantasy RPG Ornamented)
-   ========================================= */
-.mainFrame {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 48px;
-  padding: 3px 8px;
-  background: var(--nav-surface);
-  border: 1px solid var(--nav-edge-soft);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  clip-path: polygon(
-    10px 0,
-    calc(100% - 10px) 0,
-    100% 10px,
-    100% calc(100% - 10px),
-    calc(100% - 10px) 100%,
-    10px 100%,
-    0 calc(100% - 10px),
-    0 10px
+/* Top Subtle Golden Accent Glow Line */
+.navBar::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--nav-gold-start) 40%,
+    var(--nav-gold-mid) 60%,
+    transparent 100%
   );
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.45),
-    inset 0 0 0 1px var(--nav-edge-soft);
+  box-shadow: 0 0 8px var(--nav-gold-glow);
+  pointer-events: none;
 }
 
 /* Top Center Golden Diamond Point */
@@ -70,100 +81,198 @@
   background: var(--nav-edge);
   border: 1px solid var(--nav-gold-start);
   transform: translateX(-50%) rotate(45deg);
-  box-shadow: 0 0 6px var(--nav-edge);
+  box-shadow: 0 0 8px var(--nav-gold-glow);
   pointer-events: none;
-  animation: navbar-ornament 2.6s ease-in-out infinite;
+  animation: navbar-ornament 3.2s ease-in-out infinite;
 }
 
+/* =========================================
+   Left: Brand Logo & Live Server Status
+   ========================================= */
+.leftGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+}
+
+.brandLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.brandLink:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 10px var(--nav-gold-glow));
+}
+
+.brandLogo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brandDivider {
+  width: 1px;
+  height: 16px;
+  background: var(--nav-edge-soft);
+}
+
+.serverStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--nav-status-online);
+  user-select: none;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.serverStatus:hover {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: rgba(34, 197, 94, 0.16);
+}
+
+.statusPulse {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 8px;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--nav-status-online);
+  box-shadow: 0 0 8px var(--nav-status-glow);
+  animation: status-pulse 2.2s ease-in-out infinite;
+}
+
+.statusText {
+  line-height: 1;
+}
+
+/* =========================================
+   Center: Desktop Navigation Menu
+   ========================================= */
 .menuList {
   display: flex;
   align-items: center;
+  gap: 3px;
   height: 100%;
-  gap: 2px;
 }
 
 .menuLink {
   position: relative;
   display: flex;
   align-items: center;
-  height: 100%;
-  padding: 0 clamp(8px, 1.1vw, 16px);
-  font-size: 14px;
+  gap: 6px;
+  height: 36px;
+  padding: 0 clamp(8px, 1.1vw, 15px);
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--nav-text);
   text-decoration: none;
+  border-radius: 9999px;
+  border: 1px solid transparent;
   white-space: nowrap;
-  transition: color 150ms ease, text-shadow 150ms ease;
   user-select: none;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    text-shadow 160ms ease;
 }
 
 .menuLink:hover {
   color: var(--nav-action);
-  text-shadow: 0 0 8px var(--nav-edge);
+  background: var(--nav-item-hover);
+  border-color: rgba(201, 154, 80, 0.22);
+  transform: translateY(-1px);
+  text-shadow: 0 0 8px rgba(255, 228, 148, 0.45);
 }
 
 .menuText {
-  letter-spacing: 0.02em;
+  letter-spacing: 0.015em;
 }
 
-.dropdownIcon {
-  width: 13px;
-  height: 13px;
-  margin-left: 3px;
-  opacity: 0.75;
-  transition: transform 150ms ease;
+.menuIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--nav-gold-start);
+  flex-shrink: 0;
+  transition: transform 160ms ease;
 }
 
-.menuLink:hover .dropdownIcon {
-  transform: translateY(1px);
+.menuIconMuted {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+  color: var(--nav-muted);
+  flex-shrink: 0;
+  transition: opacity 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.menuLink:hover .menuIconMuted {
   opacity: 1;
+  color: var(--nav-action);
+  transform: scale(1.08);
+}
+
+.menuLink:hover .menuIcon {
+  transform: scale(1.08);
 }
 
 /* =========================================
-   Active Link: Glowing Cyan/Blue "หน้าแรก"
+   Active Menu Link (Gilded Amber/Gold Aura)
    ========================================= */
 .activeLink {
-  gap: 6px;
-  padding: 0 18px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, var(--nav-active-from) 0%, var(--nav-active-to) 100%);
-  border: 1px solid var(--nav-active-line);
-  color: var(--nav-text);
+  color: var(--nav-gold-start);
+  background: var(--nav-item-active-bg);
+  border: 1px solid var(--nav-gold-border);
   box-shadow:
-    0 0 16px rgba(56, 189, 248, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    0 0 14px var(--nav-gold-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  text-shadow: 0 0 10px var(--nav-gold-glow);
 }
 
 .activeLink:hover {
-  color: var(--nav-text);
-  text-shadow: none;
+  color: var(--nav-gold-start);
+  transform: none;
+  text-shadow: 0 0 10px var(--nav-gold-glow);
 }
 
-.homeIcon {
-  width: 16px;
-  height: 16px;
-  color: var(--nav-text);
-  flex-shrink: 0;
-}
-
-/* Neon bottom bar flare */
+/* Bottom Glow Flare Under Active Item */
 .activeGlowFlare {
   position: absolute;
-  bottom: -1px;
-  left: 8%;
-  right: 8%;
+  bottom: 2px;
+  left: 20%;
+  right: 20%;
   height: 2px;
-  background: var(--nav-glow);
-  box-shadow:
-    0 0 8px 1px var(--nav-glow),
-    0 0 16px 2px var(--nav-glow);
   border-radius: 9999px;
+  background: var(--nav-gold-start);
+  box-shadow:
+    0 0 8px var(--nav-gold-glow),
+    0 0 14px var(--nav-gold-glow);
   pointer-events: none;
-  animation: navbar-flare 2.4s ease-in-out infinite;
+  animation: flare-breath 2.4s ease-in-out infinite;
 }
 
 /* =========================================
-   Right Group: Social Media Capsule + Gold CTA
+   Right Group: Social Media + Gold CTA
    ========================================= */
 .rightGroup {
   display: flex;
@@ -171,48 +280,35 @@
   gap: 8px;
 }
 
-/* Social Media Capsule */
+/* Social Icons Capsule */
 .socialCapsule {
   display: flex;
   align-items: center;
-  height: 48px;
-  padding: 0 10px;
-  gap: 6px;
-  background: var(--nav-surface);
-  border: 1px solid var(--nav-edge-soft);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  clip-path: polygon(
-    8px 0,
-    calc(100% - 8px) 0,
-    100% 8px,
-    100% calc(100% - 8px),
-    calc(100% - 8px) 100%,
-    8px 100%,
-    0 calc(100% - 8px),
-    0 8px
-  );
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.35),
-    inset 0 0 0 1px var(--nav-edge-soft);
+  gap: 4px;
+  padding: 2px 6px;
+  height: 38px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .socialBtn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 27px;
-  height: 27px;
+  width: 28px;
+  height: 28px;
   border-radius: 9999px;
-  color: #ffffff;
+  color: var(--nav-text);
+  background: transparent;
   text-decoration: none;
-  transition: transform 150ms ease, filter 150ms ease;
+  transition:
+    transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 160ms ease,
+    box-shadow 160ms ease,
+    color 160ms ease;
   flex-shrink: 0;
-}
-
-.socialBtn:hover {
-  transform: scale(1.12);
-  filter: brightness(1.2);
 }
 
 .socialSvg {
@@ -220,62 +316,66 @@
   height: 14px;
 }
 
-.discordBtn {
+.discordBtn:hover {
   background: var(--nav-social-discord);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(88, 101, 242, 0.6);
+  transform: translateY(-1px) scale(1.1);
 }
 
-.facebookBtn {
+.facebookBtn:hover {
   background: var(--nav-social-facebook);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.6);
+  transform: translateY(-1px) scale(1.1);
 }
 
-.youtubeBtn {
+.youtubeBtn:hover {
   background: var(--nav-social-youtube);
-  border-radius: 6px;
-  width: 27px;
-  height: 20px;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+  transform: translateY(-1px) scale(1.1);
 }
 
-.lineBtn {
+.lineBtn:hover {
   background: var(--nav-social-line);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(6, 199, 85, 0.6);
+  transform: translateY(-1px) scale(1.1);
 }
 
 /* =========================================
-   Gold Download CTA Button (Faceted / Beveled)
+   Gold Download CTA Button (Lustrous Gilded Pill)
    ========================================= */
 .goldDownloadBtn {
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 7px;
-  height: 48px;
-  padding: 0 clamp(14px, 1.4vw, 22px);
+  height: 40px;
+  padding: 0 clamp(14px, 1.3vw, 20px);
+  border-radius: 9999px;
   background: linear-gradient(
     180deg,
     var(--nav-gold-start) 0%,
-    var(--nav-gold-mid) 48%,
+    var(--nav-gold-mid) 50%,
     var(--nav-gold-end) 100%
   );
   color: var(--nav-action-foreground);
   font-weight: 800;
-  font-size: 14px;
+  font-size: 13.5px;
   text-decoration: none;
   white-space: nowrap;
-  clip-path: polygon(
-    8px 0,
-    calc(100% - 8px) 0,
-    100% 8px,
-    100% calc(100% - 8px),
-    calc(100% - 8px) 100%,
-    8px 100%,
-    0 calc(100% - 8px),
-    0 8px
-  );
-  box-shadow:
-    0 0 16px rgba(229, 167, 59, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
   border: 1px solid var(--nav-gold-start);
-  transition: transform 150ms ease, filter 150ms ease, box-shadow 150ms ease;
+  box-shadow:
+    0 2px 14px var(--nav-gold-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  transition:
+    transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 160ms ease,
+    box-shadow 160ms ease;
   user-select: none;
 }
 
@@ -283,20 +383,42 @@
   filter: brightness(1.08);
   transform: translateY(-1px);
   box-shadow:
-    0 0 24px rgba(255, 228, 148, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    0 4px 22px var(--nav-gold-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .goldDownloadBtn:active {
   transform: translateY(1px);
 }
 
+/* Diagonal Light Sweep Shimmer */
+.btnShimmer {
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 100%
+  );
+  transform: skewX(-24deg);
+  pointer-events: none;
+  animation: cta-shimmer 4.2s ease-in-out infinite;
+}
+
 .downloadIcon {
-  width: 17px;
-  height: 17px;
-  stroke-width: 2.5;
+  width: 16px;
+  height: 16px;
   color: var(--nav-action-foreground);
   flex-shrink: 0;
+  transition: transform 180ms ease;
+}
+
+.goldDownloadBtn:hover .downloadIcon {
+  transform: translateY(1px);
 }
 
 .goldDownloadText {
@@ -304,48 +426,80 @@
 }
 
 /* =========================================
-   Mobile Hamburger Toggle
+   Mobile Hamburger Toggle Button
    ========================================= */
 .mobileToggleBtn {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 48px;
-  background: var(--nav-surface);
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.25);
   border: 1px solid var(--nav-edge-soft);
   color: var(--nav-text);
-  border-radius: 6px;
   cursor: pointer;
-  transition: background 150ms ease;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
 }
 
 .mobileToggleBtn:hover {
   background: var(--nav-surface-solid);
+  color: var(--nav-action);
+  border-color: var(--nav-gold-mid);
 }
 
 .toggleIcon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
 }
 
 /* =========================================
-   Mobile Drawer Overlay
+   Mobile Drawer & Backdrop
    ========================================= */
+.mobileBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 90;
+  pointer-events: auto;
+  animation: fade-in 180ms ease;
+}
+
 .mobileDrawer {
   position: absolute;
   top: 100%;
-  left: clamp(12px, 3vw, 40px);
-  right: clamp(12px, 3vw, 40px);
-  margin-top: 8px;
-  padding: 16px;
+  left: clamp(12px, 2.5vw, 36px);
+  right: clamp(12px, 2.5vw, 36px);
+  margin-top: 10px;
+  padding: 18px;
   background: var(--nav-surface-solid);
   border: 1px solid var(--nav-edge-soft);
-  border-radius: 8px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   pointer-events: auto;
-  z-index: 50;
+  z-index: 100;
+  animation: drawer-slide 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobileDrawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--nav-edge-soft);
+  margin-bottom: 12px;
+}
+
+.mobileDrawerBrand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .mobileMenuList {
@@ -357,38 +511,89 @@
 .mobileMenuItem {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
+  justify-content: space-between;
+  padding: 11px 14px;
   font-size: 14px;
   font-weight: 600;
   color: var(--nav-text);
   text-decoration: none;
-  border-radius: 4px;
-  transition: background 150ms ease, color 150ms ease;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.mobileItemLabelGroup {
+  display: flex;
+  align-items: center;
+  gap: 9px;
 }
 
 .mobileMenuItem:hover {
-  background: var(--nav-surface);
+  background: var(--nav-item-hover);
   color: var(--nav-action);
+  border-color: rgba(201, 154, 80, 0.2);
 }
 
 .mobileActiveItem {
-  background: linear-gradient(90deg, var(--nav-active-from) 0%, var(--nav-active-to) 100%);
-  color: var(--nav-text);
+  background: var(--nav-item-active-bg);
+  border-color: var(--nav-gold-border);
+  color: var(--nav-gold-start);
+  box-shadow: 0 0 12px var(--nav-gold-glow);
 }
 
-.mobileHomeIcon {
+.mobileItemIcon {
   width: 16px;
   height: 16px;
+  opacity: 0.75;
+  color: var(--nav-muted);
+  flex-shrink: 0;
+  transition: opacity 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.mobileMenuItem:hover .mobileItemIcon {
+  opacity: 1;
+  color: var(--nav-action);
+  transform: scale(1.06);
+}
+
+.mobileActiveItem .mobileItemIcon {
+  opacity: 1;
+  color: var(--nav-gold-start);
+}
+
+.mobileActiveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--nav-gold-start);
+  box-shadow: 0 0 8px var(--nav-gold-glow);
+}
+
+.mobileChevron {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+  transition: transform 150ms ease, opacity 150ms ease;
+}
+
+.mobileMenuItem:hover .mobileChevron {
+  opacity: 1;
+  transform: translateX(2px);
+  color: var(--nav-action);
 }
 
 .mobileDrawerFooter {
-  margin-top: 12px;
-  padding-top: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid var(--nav-edge-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .mobileDownloadBtn {
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -398,34 +603,59 @@
   background: linear-gradient(
     180deg,
     var(--nav-gold-start) 0%,
-    var(--nav-gold-mid) 48%,
+    var(--nav-gold-mid) 50%,
     var(--nav-gold-end) 100%
   );
   color: var(--nav-action-foreground);
   font-weight: 800;
-  font-size: 15px;
-  border-radius: 6px;
+  font-size: 14.5px;
+  border-radius: 10px;
   text-decoration: none;
+  box-shadow:
+    0 2px 14px var(--nav-gold-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.mobileSocialRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.mobileSocialBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--nav-text);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 150ms ease, background 150ms ease, color 150ms ease;
+}
+
+.mobileSocialBtn:hover {
+  transform: translateY(-1px);
 }
 
 /* =========================================
    Responsive Breakpoints
    ========================================= */
-@media (max-width: 1180px) {
-  .menuList {
-    gap: 0;
-  }
-  .menuLink {
-    padding: 0 10px;
-    font-size: 13px;
-  }
-  .activeLink {
-    padding: 0 12px;
+@media (max-width: 1160px) {
+  .brandDivider,
+  .serverStatus {
+    display: none;
   }
 }
 
 @media (max-width: 980px) {
-  .mainFrame {
+  .menuList,
+  .socialCapsule {
     display: none;
   }
   .mobileToggleBtn {
@@ -433,28 +663,102 @@
   }
 }
 
-@media (max-width: 540px) {
-  .socialCapsule {
-    display: none;
+@media (max-width: 520px) {
+  .navBar {
+    height: 50px;
+    padding: 0 6px 0 12px;
+  }
+  .brandLogo {
+    height: 24px;
   }
   .goldDownloadBtn {
-    height: 44px;
-    font-size: 13px;
-    padding: 0 14px;
+    height: 36px;
+    font-size: 12.5px;
+    padding: 0 12px;
+    gap: 5px;
+  }
+  .downloadIcon {
+    width: 14px;
+    height: 14px;
+  }
+  .mobileToggleBtn {
+    width: 36px;
+    height: 36px;
   }
 }
 
+/* =========================================
+   Keyframes
+   ========================================= */
 @keyframes navbar-drop {
-  from { opacity: 0; transform: translate3d(0, -18px, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
+  from {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes navbar-ornament {
-  0%, 100% { transform: translateX(-50%) rotate(45deg) scale(0.9); opacity: 0.72; }
-  50% { transform: translateX(-50%) rotate(45deg) scale(1.12); opacity: 1; }
+  0%, 100% {
+    transform: translateX(-50%) rotate(45deg) scale(0.9);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateX(-50%) rotate(45deg) scale(1.15);
+    opacity: 1;
+  }
 }
 
-@keyframes navbar-flare {
-  0%, 100% { opacity: 0.55; transform: scaleX(0.8); }
-  50% { opacity: 1; transform: scaleX(1); }
+@keyframes flare-breath {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scaleX(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes cta-shimmer {
+  0%, 65% {
+    left: -120%;
+  }
+  85%, 100% {
+    left: 200%;
+  }
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    transform: scale(0.92);
+    box-shadow: 0 0 6px var(--nav-status-glow);
+  }
+  50% {
+    transform: scale(1.18);
+    box-shadow: 0 0 12px var(--nav-status-glow);
+  }
+}
+
+@keyframes drawer-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

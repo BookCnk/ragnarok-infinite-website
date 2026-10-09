@@ -56,9 +56,20 @@
   --color-nav-social-facebook: var(--nav-social-facebook);
   --color-nav-social-youtube: var(--nav-social-youtube);
   --color-nav-social-line: var(--nav-social-line);
+  --color-nav-gold-glow: var(--nav-gold-glow);
+  --color-nav-gold-border: var(--nav-gold-border);
+  --color-nav-item-hover: var(--nav-item-hover);
+  --color-nav-item-active-bg: var(--nav-item-active-bg);
+  --color-nav-status-online: var(--nav-status-online);
+  --color-nav-status-glow: var(--nav-status-glow);
   --color-badge-bg: var(--badge-bg);
   --color-badge-text: var(--badge-text);
   --color-badge-border: var(--badge-border);
+  --color-footer-surface: var(--footer-surface);
+  --color-footer-surface-card: var(--footer-surface-card);
+  --color-footer-border: var(--footer-border);
+  --color-footer-text: var(--footer-text);
+  --color-footer-muted: var(--footer-muted);
 
   --font-sans: var(--font-noto-thai), sans-serif;
   --font-mono: var(--font-roboto-mono), monospace;
@@ -154,9 +165,20 @@
   --nav-social-facebook: #1877f2;
   --nav-social-youtube: #ff0000;
   --nav-social-line: #06c755;
+  --nav-gold-glow: rgba(229, 167, 59, 0.45);
+  --nav-gold-border: rgba(240, 186, 99, 0.35);
+  --nav-item-hover: rgba(240, 186, 99, 0.12);
+  --nav-item-active-bg: rgba(240, 186, 99, 0.18);
+  --nav-status-online: #22c55e;
+  --nav-status-glow: rgba(34, 197, 94, 0.5);
   --badge-bg: rgba(242, 185, 0, 0.12);
   --badge-text: #925804;
   --badge-border: rgba(242, 185, 0, 0.35);
+  --footer-surface: #040d1a;
+  --footer-surface-card: rgba(8, 22, 42, 0.7);
+  --footer-border: rgba(201, 154, 80, 0.22);
+  --footer-text: #f1f5f9;
+  --footer-muted: #8899a6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -215,9 +237,20 @@
     --nav-social-facebook: #1877f2;
     --nav-social-youtube: #ff0000;
     --nav-social-line: #06c755;
+    --nav-gold-glow: rgba(229, 167, 59, 0.5);
+    --nav-gold-border: rgba(240, 186, 99, 0.4);
+    --nav-item-hover: rgba(240, 186, 99, 0.14);
+    --nav-item-active-bg: rgba(240, 186, 99, 0.2);
+    --nav-status-online: #22c55e;
+    --nav-status-glow: rgba(34, 197, 94, 0.6);
     --badge-bg: rgba(245, 158, 11, 0.15);
     --badge-text: #fbbf24;
     --badge-border: rgba(245, 158, 11, 0.4);
+    --footer-surface: #030a14;
+    --footer-surface-card: rgba(6, 18, 36, 0.75);
+    --footer-border: rgba(201, 154, 80, 0.26);
+    --footer-text: #f1f5f9;
+    --footer-muted: #94a3b8;
   }
 }
 
@@ -276,9 +309,20 @@
   --nav-social-facebook: #1877f2;
   --nav-social-youtube: #ff0000;
   --nav-social-line: #06c755;
+  --nav-gold-glow: rgba(229, 167, 59, 0.5);
+  --nav-gold-border: rgba(240, 186, 99, 0.4);
+  --nav-item-hover: rgba(240, 186, 99, 0.14);
+  --nav-item-active-bg: rgba(240, 186, 99, 0.2);
+  --nav-status-online: #22c55e;
+  --nav-status-glow: rgba(34, 197, 94, 0.6);
   --badge-bg: rgba(245, 158, 11, 0.15);
   --badge-text: #fbbf24;
   --badge-border: rgba(245, 158, 11, 0.4);
+  --footer-surface: #030a14;
+  --footer-surface-card: rgba(6, 18, 36, 0.75);
+  --footer-border: rgba(201, 154, 80, 0.26);
+  --footer-text: #f1f5f9;
+  --footer-muted: #94a3b8;
 }
 
 * {
