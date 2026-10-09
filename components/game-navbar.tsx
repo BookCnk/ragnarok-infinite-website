@@ -199,7 +199,7 @@ export function GameNavbar() {
             aria-label="ดาวน์โหลดเกม Ragnarok Infinite"
           >
             <Image
-              src="/images/ui/image.png"
+              src="/images/ui/dowload-btn.png"
               alt="ดาวน์โหลดเกม"
               width={2172}
               height={724}
@@ -296,7 +296,7 @@ export function GameNavbar() {
                 aria-label="ดาวน์โหลดเกม Ragnarok Infinite"
               >
                 <Image
-                  src="/images/ui/image.png"
+                  src="/images/ui/dowload-btn.png"
                   alt="ดาวน์โหลดเกม"
                   width={2172}
                   height={724}
